@@ -18,18 +18,12 @@ class MainActivity : AppCompatActivity() {
     var playerTwoMoves = ArrayList<Int>()
 
     var playerPointer: Int = 1
-
+    var playerOneWon: Boolean = false
+    var playerTwoWon: Boolean = false
     fun HandleClick(view: View) {
 
 
-        var gameOver: Boolean
-        if (playerPointer == 1) {
-            gameOver = GameOver(playerOneMoves)
-        } else {
-            gameOver = GameOver(playerTwoMoves)
-        }
-
-        if (!gameOver) {
+        if (!(playerOneWon || playerTwoWon)) {
             when (view) {
                 findViewById<Button>(R.id.button) -> {
 
@@ -37,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                         playerOneMoves.add(1)
                         findViewById<Button>(R.id.button).text = "O"
                         playerPointer = 2
-                        
+
 
                     } else {
                         playerTwoMoves.add(1)
@@ -142,9 +136,25 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        } else (
-                Toast.makeText(this, "Player " + playerPointer + " wins", Toast.LENGTH_SHORT)
-                )
+            playerOneWon = GameOver(playerOneMoves)
+            playerTwoWon = GameOver(playerTwoMoves)
+
+            if (playerOneWon || playerTwoWon) {
+                if (playerPointer == 1) {
+                    Toast.makeText(this, "Player " + 2 + " wins", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Player " + 1 + " wins", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
+        }
+
+
+//    else (
+//
+//
+//    )
 
 
     }
@@ -153,52 +163,50 @@ class MainActivity : AppCompatActivity() {
         if (arrayList.size == 0) {
             return false
         } else {
-            var i: Int = 0
-            var ctr: Int = 0
-            while (i < arrayList.size) {
-                var ctr: Int = 0
-                while (ctr < arrayList.size) {
-                    if (arrayList.contains(1) && arrayList.contains(2) && arrayList.contains(3)) {
-                        return true
-                    } else if (arrayList.contains(4) && arrayList.contains(5) && arrayList.contains(
-                            6
-                        )
-                    ) {
-                        return true
-                    } else if (arrayList.contains(7) && arrayList.contains(8) && arrayList.contains(
-                            9
-                        )
-                    ) {
-                        return true
-                    } else if (arrayList.contains(1) && arrayList.contains(4) && arrayList.contains(
-                            7
-                        )
-                    ) {
-                        return true
-                    } else if (arrayList.contains(2) && arrayList.contains(5) && arrayList.contains(
-                            8
-                        )
-                    ) {
-                        return true
-                    } else if (arrayList.contains(3) && arrayList.contains(6) && arrayList.contains(
-                            9
-                        )
-                    ) {
-                        return true
-                    } else if (arrayList.contains(1) && arrayList.contains(5) && arrayList.contains(
-                            9
-                        )
-                    ) {
-                        return true
-                    } else if (arrayList.contains(3) && arrayList.contains(5) && arrayList.contains(
-                            7
-                        )
-                    ) {
-                        return true
-                    }
-                }
+
+
+            if (arrayList.contains(1) && arrayList.contains(2) && arrayList.contains(3)) {
+                return true
+            } else if (arrayList.contains(4) && arrayList.contains(5) && arrayList.contains(
+                    6
+                )
+            ) {
+                return true
+            } else if (arrayList.contains(7) && arrayList.contains(8) && arrayList.contains(
+                    9
+                )
+            ) {
+                return true
+            } else if (arrayList.contains(1) && arrayList.contains(4) && arrayList.contains(
+                    7
+                )
+            ) {
+                return true
+            } else if (arrayList.contains(2) && arrayList.contains(5) && arrayList.contains(
+                    8
+                )
+            ) {
+                return true
+            } else if (arrayList.contains(3) && arrayList.contains(6) && arrayList.contains(
+                    9
+                )
+            ) {
+                return true
+            } else if (arrayList.contains(1) && arrayList.contains(5) && arrayList.contains(
+                    9
+                )
+            ) {
+                return true
+            } else if (arrayList.contains(3) && arrayList.contains(5) && arrayList.contains(
+                    7
+                )
+            ) {
+                return true
             }
             return false
         }
     }
 }
+
+//    fun PlayerOrder
+//}
