@@ -26,7 +26,9 @@
                 android:layout_height="100dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:onClick="HandleClick" />
+                android:onClick="HandleClick"
+
+                />
 
             <Button
                 android:id="@+id/button2"

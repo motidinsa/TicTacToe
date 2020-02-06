@@ -1,10 +1,12 @@
 package app.moti.tictactoe
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     var playerPointer: Int = 1
     var playerOneWon: Boolean = false
     var playerTwoWon: Boolean = false
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     fun HandleClick(view: View) {
 
 
@@ -142,20 +145,15 @@ class MainActivity : AppCompatActivity() {
             if (playerOneWon || playerTwoWon) {
                 if (playerPointer == 1) {
                     Toast.makeText(this, "Player " + 2 + " wins", Toast.LENGTH_SHORT).show()
+                    changeBackground(playerTwoMoves)
                 } else {
                     Toast.makeText(this, "Player " + 1 + " wins", Toast.LENGTH_SHORT).show()
+                    changeBackground(playerOneMoves)
                 }
             }
 
 
         }
-
-
-//    else (
-//
-//
-//    )
-
 
     }
 
@@ -206,7 +204,43 @@ class MainActivity : AppCompatActivity() {
             return false
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    fun changeBackground(arrayList: ArrayList<Int>) {
+
+        if (arrayList.contains(1) && arrayList.contains(2) && arrayList.contains(3)) {
+            findViewById<Button>(R.id.button).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button2).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button3).setBackgroundResource(R.color.lightGreen)
+        } else if (arrayList.contains(4) && arrayList.contains(5) && arrayList.contains(6)) {
+            findViewById<Button>(R.id.button4).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button5).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button6).setBackgroundResource(R.color.lightGreen)
+        } else if (arrayList.contains(7) && arrayList.contains(8) && arrayList.contains(9)) {
+            findViewById<Button>(R.id.button7).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button8).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button9).setBackgroundResource(R.color.lightGreen)
+        } else if (arrayList.contains(1) && arrayList.contains(4) && arrayList.contains(7)) {
+            findViewById<Button>(R.id.button).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button4).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button7).setBackgroundResource(R.color.lightGreen)
+        } else if (arrayList.contains(2) && arrayList.contains(5) && arrayList.contains(8)) {
+            findViewById<Button>(R.id.button2).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button5).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button8).setBackgroundResource(R.color.lightGreen)
+        } else if (arrayList.contains(3) && arrayList.contains(6) && arrayList.contains(9)) {
+            findViewById<Button>(R.id.button3).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button6).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button9).setBackgroundResource(R.color.lightGreen)
+        } else if (arrayList.contains(1) && arrayList.contains(5) && arrayList.contains(9)) {
+            findViewById<Button>(R.id.button).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button5).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button9).setBackgroundResource(R.color.lightGreen)
+        } else if (arrayList.contains(3) && arrayList.contains(5) && arrayList.contains(7)) {
+            findViewById<Button>(R.id.button3).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button5).setBackgroundResource(R.color.lightGreen)
+            findViewById<Button>(R.id.button7).setBackgroundResource(R.color.lightGreen)
+        }
+    }
 }
 
-//    fun PlayerOrder
-//}
